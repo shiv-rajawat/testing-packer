@@ -14,7 +14,9 @@ pipeline {
           dir("Pre-ELK"){
           sh "terraform init"
           sh "terraform apply -auto-approve"
-          vpcid = sh 'aws ec2 describe-vpcs --query "Vpcs[?Tags[?Key==`Name`]|[?Value==`cpv-vpc`]].VpcId" --output text'
+          script{
+              def vpcid = sh 'aws ec2 describe-vpcs --query "Vpcs[?Tags[?Key==`Name`]|[?Value==`cpv-vpc`]].VpcId" --output text'
+             }
            }
         }
     }
