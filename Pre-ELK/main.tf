@@ -27,10 +27,10 @@ module "internetgateway" {
   }
 
 ## Creates a route table for the VPC created.
-module "dmz_routetable"{
-  source = "../Modules/routetable"
-  vpc_id       = "${module.vpc.vpc_id}"
-  route_table_name = "dmz-rt"
+  module "dmz_routetable"{
+    source = "../Modules/routetable"
+    vpc_id       = "${module.vpc.vpc_id}"
+    route_table_name = "dmz-rt"
 }
 
 module "dmz_rt_route" {
