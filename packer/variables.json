@@ -1,8 +1,8 @@
 {
   "elasticsearch_version": "",
 
-  "aws_region": "us-east-1",
-  "aws_az": "us-east-1d",
+  "aws_region": "us-east-2",
+  "aws_az": "us-east-2a",
 
   "azure_client_id": "",
   "azure_client_secret": "",
