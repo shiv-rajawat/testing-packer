@@ -12,7 +12,7 @@ variable "aws_region" {
 variable "vpc_id" {
   description = "VPC ID to create the Elasticsearch cluster in"
   type = "string"
-  default = "vpc-08e6083bd5cb8ddbf"
+
 }
 
 variable "availability_zones" {
