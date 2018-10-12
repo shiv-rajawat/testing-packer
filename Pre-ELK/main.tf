@@ -38,7 +38,7 @@ module "dmz_rt_route" {
   route_table_id = "${module.dmz_routetable.route_table_id}"
   rt_destination_cidr_block = "0.0.0.0/0"
   internet_gateway_id = "${module.internetgateway.internet_gateway_id}"
-}
+  }
 
 
 module "public_rt_association" {
