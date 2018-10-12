@@ -20,11 +20,11 @@ module "dmz_subnets" {
 }
 
 ## Creates an internet gateway and attach it to the created vpc.
-module "internetgateway"{
+module "internetgateway" {
   source = "../Modules/internetgateway"
-  vpc_id       = "${module.vpc.vpc_id}"
+  vpc_id = "${module.vpc.vpc_id}"
   internet_gateway_name = "${var.ig_name}"
-}
+  }
 
 ## Creates a route table for the VPC created.
 module "dmz_routetable"{
