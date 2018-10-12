@@ -1,7 +1,7 @@
 
 ## Creates a VPC using the VPC module.
 module "vpc" {
-  source = "../modules/vpc"
+  source = "../Modules/vpc"
   cidr_block = "${var.vpc_cidr_block}"
   vpc_name = "${var.vpc_name}"
 }
@@ -9,7 +9,7 @@ module "vpc" {
 
 ## Creates public subnet inside the vpc created.
 module "dmz_subnets" {
-  source = "../modules/publicsubnet"
+  source = "../Modules/publicsubnet"
   env = "${var.env}"
   subnet_count = "${var.dmz_subnet_count}"
   cidr_block = "${var.dmz_subnet_cidr_block}"
@@ -34,7 +34,7 @@ module "dmz_routetable"{
 }
 
 module "dmz_rt_route" {
-  source = "../modules/route"
+  source = "../Modules/route"
   route_table_id = "${module.dmz_routetable.route_table_id}"
   rt_destination_cidr_block = "0.0.0.0/0"
   internet_gateway_id = "${module.internetgateway.internet_gateway_id}"
