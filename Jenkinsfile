@@ -13,6 +13,7 @@ pipeline {
         steps {
           dir("Pre-ELK"){
           sh "terraform init || true"
+          sh "terraform destroy -var-file=param.tfvars -auto-approve"
           sh "terraform apply -var-file=param.tfvars -auto-approve"
           
           script{
