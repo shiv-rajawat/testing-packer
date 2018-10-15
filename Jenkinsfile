@@ -15,12 +15,10 @@ pipeline {
           sh "terraform init || true"
           sh "terraform apply -var-file=param.tfvars -auto-approve"
           
-          
-          sh 'aws ec2 describe-vpcs --query "Vpcs[?Tags[?Key==\'Name\']|[?Value==\'cpv-vpc\']].VpcId" --region us-east-2 --output text > vpcid'
-            script{
-              def vpcid = readFile('vpcid').trim()
+          script{
+          env.vpcid = sh 'aws ec2 describe-vpcs --query "Vpcs[?Tags[?Key==\'Name\']|[?Value==\'cpv-vpc\']].VpcId" --region us-east-2 --output text'
             }
-          sh 'echo "VPC id from json is ${vpcid} ...."'
+          sh 'echo "VPC id from json is ${env.vpcid} ...."'
              
            }
         }
