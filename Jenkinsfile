@@ -56,10 +56,3 @@ pipeline {
   }
 }
 
-stage('Post ELK Infra destruction') {
-        steps {
-          dir("Pre-ELK"){
-          sh "terraform destroy -var-file=param.tfvars -auto-approve"
-           }
-        }
-    }
