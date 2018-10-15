@@ -45,7 +45,7 @@ pipeline {
           dir ("terraform-aws"){
            script{
            vpcid = sh (returnStdout: true, script:'aws ec2 describe-vpcs --query "Vpcs[?Tags[?Key==\'Name\']|[?Value==\'cpv-vpc\']].VpcId" --region us-east-2 --output text')
-            sh (script: )
+            
            }
             sh "terraform init"
             echo "VPC id is ${vpcid} ...."
