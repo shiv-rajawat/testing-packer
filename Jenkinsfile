@@ -18,7 +18,7 @@ pipeline {
           script{
           env.vpcid = sh 'aws ec2 describe-vpcs --query "Vpcs[?Tags[?Key==\'Name\']|[?Value==\'cpv-vpc\']].VpcId" --region us-east-2 --output text'
             }
-          echo "VPC id from json is ${env.vpcid} ...."'
+          echo "VPC id from json is ${env.vpcid} ...."
              
            }
         }
