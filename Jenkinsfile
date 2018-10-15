@@ -12,8 +12,8 @@ pipeline {
     stage('Pre ELK Infra setup') {
         steps {
           dir("Pre-ELK"){
-          sh "terraform destroy -var-file=param.tfvars -auto-approve"
-          sh "terraform init"
+          sh "terraform destroy -var-file=param.tfvars -auto-approve || true"
+          sh "terraform init || true"
           sh "terraform apply -var-file=param.tfvars -auto-approve"
           script{
               def vpcid = sh "aws ec2 describe-vpcs --query `Vpcs[?Tags[?Key=='Name']|[?Value=='cpv-vpc']].VpcId` --output text"
