@@ -27,6 +27,7 @@ pipeline {
           sh "terraform apply -auto-approve"
         }
     }
+}
 
 
     stage('AMI Creation') {
