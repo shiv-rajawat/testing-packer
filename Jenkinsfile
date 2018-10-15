@@ -43,11 +43,11 @@ pipeline {
     stage('Apply terraform') {
         steps {
           dir ("terraform-aws"){
-            script{
+           script{
            vpcid = sh (returnStdout: true, script:'aws ec2 describe-vpcs --query "Vpcs[?Tags[?Key==\'Name\']|[?Value==\'cpv-vpc\']].VpcId" --region us-east-2 --output text')
             }
             sh "terraform init"
-            sh 'echo "VPC id is ${vpcid} ...."'
+            echo "VPC id is ${vpcid} ...."
             sh 'terraform plan -var "vpc_id=${vpcid}"'
             sh 'terraform apply -var "vpc_id=${vpcid}" -auto-approve'            
             sh "terraform output > /var/lib/jenkins/pipeline-output.txt"
