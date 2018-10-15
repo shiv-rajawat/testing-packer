@@ -44,7 +44,7 @@ pipeline {
         steps {
           dir ("terraform-aws"){
            script{
-           vpcid = sh (returnStdout: true, script:'aws ec2 describe-vpcs --query "Vpcs[?Tags[?Key==\'Name\']|[?Value==\'cpv-vpc\']].VpcId" --region us-east-2 --output text')
+           vpcid = sh (returnStdout: true, script:'aws ec2 describe-vpcs --query "Vpcs[?Tags[?Key==\'Name\']|[?Value==\'cpv-vpc\']].VpcId" --region us-east-2 --output text | cut -f1')
            }
             sh "terraform init"
             sh "terraform plan -var 'vpc_id=vpc-0f7c715eef9314960 '"
