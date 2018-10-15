@@ -47,7 +47,7 @@ pipeline {
            vpcid = sh (returnStdout: true, script:'aws ec2 describe-vpcs --query "Vpcs[?Tags[?Key==\'Name\']|[?Value==\'cpv-vpc\']].VpcId" --region us-east-2 --output text | cut -d " " -f5')
            }
             sh "terraform init"
-            sh "terraform plan -var 'vpc_id=${tr -d \' \' <<<${vpcid}}"
+            sh "terraform plan -var 'vpc_id=${tr -d ' ' <<<${vpcid}}"
             sh "terraform apply -var 'vpc_id=${vpcid}' -auto-approve"           
             sh "terraform output > /var/lib/jenkins/pipeline-output.txt"
             }
