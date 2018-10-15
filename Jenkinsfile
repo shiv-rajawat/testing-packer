@@ -14,13 +14,7 @@ pipeline {
           dir("Pre-ELK"){
           sh "terraform init || true"
           sh "terraform apply -var-file=param.tfvars -auto-approve"
-          
-          script{
-           vpcid = sh (returnStdout: true, script:'aws ec2 describe-vpcs --query "Vpcs[?Tags[?Key==\'Name\']|[?Value==\'cpv-vpc\']].VpcId" --region us-east-2 --output text')
             }
-          echo "VPC id from json is ${vpcid} ...."
-             
-           }
         }
     }
 
@@ -49,11 +43,13 @@ pipeline {
     stage('Apply terraform') {
         steps {
           dir ("terraform-aws"){
+            script{
+           vpcid = sh (returnStdout: true, script:'aws ec2 describe-vpcs --query "Vpcs[?Tags[?Key==\'Name\']|[?Value==\'cpv-vpc\']].VpcId" --region us-east-2 --output text')
+            }
             sh "terraform init"
             sh 'echo "VPC id is ${vpcid} ...."'
             sh 'terraform plan -var "vpc_id=${vpcid}"'
-            sh 'terraform apply -var "vpc_id=${vpcid}" -auto-approve'
-            
+            sh 'terraform apply -var "vpc_id=${vpcid}" -auto-approve'            
             sh "terraform output > /var/lib/jenkins/pipeline-output.txt"
             }
         }
