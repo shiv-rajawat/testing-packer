@@ -16,7 +16,7 @@ pipeline {
           sh "terraform apply -var-file=param.tfvars -auto-approve"
           
           
-              vpcid = sh (
+              def vpcid = sh (
                 script: 'aws ec2 describe-vpcs --query "Vpcs[?Tags[?Key==\'Name\']|[?Value==\'cpv-vpc\']].VpcId" --region us-east-2 --output text',
                 returnStdout: true
                 ).trim()               
