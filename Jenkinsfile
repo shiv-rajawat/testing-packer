@@ -48,7 +48,7 @@ pipeline {
         steps {
           dir ("terraform-aws"){
             sh "terraform init"
-            sh 'echo "${vpcid}"'
+            sh 'echo "VPC id is ${vpcid} ...."'
             sh 'terraform plan -var "vpc_id=${vpcid}"'
             sh 'terraform apply -var "vpc_id=${vpcid}" -auto-approve'
             
