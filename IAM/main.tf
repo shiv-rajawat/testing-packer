@@ -8,8 +8,8 @@ terraform {
   }
 }
 
-resource "aws_iam_role" "packer_role" {
-  name = "packer-new"
+resource "aws_iam_role" "packer" {
+  name = "packer"
   assume_role_policy = <<EOF
 {
     "Version": "2012-10-17",
@@ -25,7 +25,7 @@ EOF
 
 
 
-resource "aws_iam_instance_profile" "packer_profile" {
-  name = "packer-new"
+resource "aws_iam_instance_profile" "packer" {
+  name = "packer"
   role = "${aws_iam_role.packer_role.name}"
 }
