@@ -48,9 +48,7 @@ pipeline {
            }
             sh "terraform init"
             sh "terraform destroy -var 'vpc_id=${vpcid}' -var-file=../parameters/es-cluster-param.tfvars -auto-approve"
-            sh "terraform plan -var 'vpc_id=${vpcid}' -var-file=../parameters/es-cluster-param.tfvars"
-            sh "terraform apply -var 'vpc_id=${vpcid}' -var-file=../parameters/es-cluster-param.tfvars -auto-approve"
-            sh "terraform output > /var/lib/jenkins/pipeline-output.txt"
+            
             }
         }
     }
