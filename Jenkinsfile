@@ -49,7 +49,7 @@ pipeline {
           dir ("terraform-aws"){
             sh "terraform init"
             sh "terraform plan -var 'vpc_id=${vpcid}'"
-            sh "terraform apply -var 'vpc_id=${vpcid} -auto-approve'"
+            sh "terraform apply -var 'vpc_id=${vpcid}' -auto-approve"
             sh "terraform output > /var/lib/jenkins/pipeline-output.txt"
             }
         }
