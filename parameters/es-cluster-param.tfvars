@@ -1,4 +1,4 @@
-es_cluster = "cwt-es-cluster"
+es_cluster = "cwt-elk-cluster"
 aws_region = "us-east-2"
 availability_zones = []
 key_name = "elasticsearch"

@@ -13,7 +13,7 @@ pipeline {
         steps {
           dir("Pre-ELK"){
           sh "terraform init || true"
-          sh "terraform apply -var-file=param.tfvars -auto-approve"
+          sh "terraform apply -var-file=../parameters/pre-elk-param.tfvars -auto-approve"
             }
         }
     }
@@ -23,11 +23,9 @@ pipeline {
     stage('IAM Creation'){
       steps{
         dir("IAM"){
-          sh "aws iam create-role --role-name packer --assume-role-policy-document iam-role.json || true"
-          sh "aws iam create-instance-profile --instance-profile-name packer || true"
-          sh "aws iam add-role-to-instance-profile  --instance-profile-name packer --role-name packer || true"
+          sh "terraform init"
+          sh "terraform apply -auto-approve"
         }
-      }
     }
 
 
@@ -47,11 +45,11 @@ pipeline {
            vpcid = sh (returnStdout: true, script:'aws ec2 describe-vpcs --query "Vpcs[?Tags[?Key==\'Name\']|[?Value==\'cpv-vpc\']].VpcId" --region us-east-2 --output text').trim()
            }
             sh "terraform init"
-            sh "terraform destroy -var 'vpc_id=${vpcid}' -var-file=../parameters/es-cluster-param.tfvars -auto-approve"
             sh "terraform plan -var 'vpc_id=${vpcid}' -var-file=../parameters/es-cluster-param.tfvars"
             sh "terraform apply -var 'vpc_id=${vpcid}' -var-file=../parameters/es-cluster-param.tfvars -auto-approve"
             sh "terraform output > /var/lib/jenkins/pipeline-output.txt"
-            
+            sh "terraform destroy -var 'vpc_id=${vpcid}' -var-file=../parameters/es-cluster-param.tfvars -auto-approve"
+
             }
         }
     }
