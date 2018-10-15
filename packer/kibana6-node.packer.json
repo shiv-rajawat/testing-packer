@@ -15,7 +15,7 @@
       "source_ami_filter": {
         "filters": {
           "virtualization-type": "hvm",
-          "name": "elasticsearch6-*",
+          "name": "elasticsearch6*",
           "root-device-type": "ebs"
         },
         "owners": [
