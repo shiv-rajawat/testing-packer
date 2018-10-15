@@ -16,9 +16,9 @@ pipeline {
           sh "terraform apply -var-file=param.tfvars -auto-approve"
           
           script{
-          env.vpcid = sh 'aws ec2 describe-vpcs --query "Vpcs[?Tags[?Key==\'Name\']|[?Value==\'cpv-vpc\']].VpcId" --region us-east-2 --output text'
+           vpcid << sh 'aws ec2 describe-vpcs --query "Vpcs[?Tags[?Key==\'Name\']|[?Value==\'cpv-vpc\']].VpcId" --region us-east-2 --output text'
             }
-          echo "VPC id from json is ${env.vpcid} ...."
+          echo "VPC id from json is ${vpcid} ...."
              
            }
         }
