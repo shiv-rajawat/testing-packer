@@ -1,12 +1,12 @@
 ### MANDATORY ###
 variable "es_cluster" {
   description = "Name of the elasticsearch cluster, used in node discovery"
-  default = "Selman-elasticsearch-cluster"
+  default = "cwt-es-cluster"
 }
 
 variable "aws_region" {
   type = "string"
-  default = "us-east-1"
+  default = "us-east-2"
 }
 
 variable "vpc_id" {
