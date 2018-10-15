@@ -13,7 +13,6 @@ pipeline {
         steps {
           dir("Pre-ELK"){
           sh "terraform init || true"
-          sh "terraform destroy -var-file=param.tfvars -auto-approve"
           sh "terraform apply -var-file=param.tfvars -auto-approve"
           
           script{
@@ -49,8 +48,10 @@ pipeline {
         steps {
           dir ("terraform-aws"){
             sh "terraform init"
+            sh 'echo "${vpcid}"'
             sh 'terraform plan -var "vpc_id=${vpcid}"'
             sh 'terraform apply -var "vpc_id=${vpcid}" -auto-approve'
+            
             sh "terraform output > /var/lib/jenkins/pipeline-output.txt"
             }
         }
