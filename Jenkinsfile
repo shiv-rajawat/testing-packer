@@ -12,7 +12,6 @@ pipeline {
     stage('Pre ELK Infra setup') {
         steps {
           dir("Pre-ELK"){
-          sh "terraform destroy -var-file=param.tfvars -auto-approve || true"
           sh "terraform init || true"
           sh "terraform apply -var-file=param.tfvars -auto-approve"
           script{
@@ -56,3 +55,11 @@ pipeline {
     }
   }
 }
+
+stage('Post ELK Infra destruction') {
+        steps {
+          dir("Pre-ELK"){
+          sh "terraform destroy -var-file=param.tfvars -auto-approve"
+           }
+        }
+    }
