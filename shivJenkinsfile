@@ -3,6 +3,7 @@ import hudson.model.User.FullNameIdResolver
 STAGE = formatStage()
 
 pipeline {
+    agent any
     options {
         disableConcurrentBuilds()
         buildDiscarder(logRotator(numToKeepStr: '10'))
