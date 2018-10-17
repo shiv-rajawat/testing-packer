@@ -1,4 +1,11 @@
 
+data "aws_availability_zones" "available" {}
+
+locals {
+  subnet_az_str = "${join(",", coalescelist(var.dmz_subnet_az, data.aws_availability_zones.available.names))}"
+  subnet_az = ["${split(",", local.subnet_az_str)}"]
+}
+
 ## Creates a VPC using the VPC module.
 module "vpc" {
   source = "../Modules/vpc"
@@ -15,7 +22,7 @@ module "dmz_subnets" {
   cidr_block = "${var.dmz_subnet_cidr_block}"
   vpc_id = "${module.vpc.vpc_id}"
   subnet_name = "${var.dmz_subnet_name}"
-  subnet_az = "${var.dmz_subnet_az}"
+  subnet_az = "${local.subnet_az}"
   "map_public_ip_on_launch" = true
 }
 
