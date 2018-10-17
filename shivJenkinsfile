@@ -48,7 +48,8 @@ def run(command) {
         if (name.toLowerCase().contains(command)) {
             commands["${name}"] = {
                 stage("${name}") {
-
+                        echo "${name}"
+                        echo ${stage}
 
 
                         sh(script);
