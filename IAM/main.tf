@@ -4,12 +4,15 @@ terraform {
     bucket = "cwt-terraform-remote-state-bucket"
     dynamodb_table = "cwt-terraform-state-lock"
     key    = "global/s3/iam-terraform.tfstate"
-    region = "us-east-2"
   }
 }
 
+provider "aws" {
+  region = "{var.aws_region}"
+}
+
 resource "aws_iam_role" "packer" {
-  name = "packer"
+  name = "{var.iam_role_name}"
   assume_role_policy = <<EOF
 {
     "Version": "2012-10-17",
@@ -26,6 +29,6 @@ EOF
 
 
 resource "aws_iam_instance_profile" "packer" {
-  name = "packer"
+  name = "${var.iam_instance_profile_name}"
   role = "${aws_iam_role.packer.name}"
 }

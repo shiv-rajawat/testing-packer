@@ -1,5 +1,9 @@
 pipeline {
   agent any
+  environment {
+        aws_region = 'us-east-2'
+        vpc_name = 'cpv-vpc'
+    }
 
   stages {
 
@@ -12,7 +16,7 @@ pipeline {
     stage('Pre ELK Infra setup') {
         steps {
           dir("Pre-ELK"){
-          sh "terraform init -backend-config="region=us-east-2"
+          sh 'terraform init -backend-config="region=${env.aws_region}"'
           sh "terraform apply -var-file=../parameters/pre-elk-param.tfvars -auto-approve"
             }
         }
@@ -23,8 +27,8 @@ pipeline {
     stage('IAM Creation'){
       steps{
         dir("IAM"){
-          sh "terraform init"
-          sh "terraform apply -auto-approve"
+          sh 'terraform init -backend-config="region=${env.aws_region}'
+          sh "terraform apply -var-file=../parameters/iam-param.tfvars -auto-approve"
         }
     }
 }
@@ -43,9 +47,9 @@ pipeline {
         steps {
           dir ("terraform-aws"){
            script{
-           vpcid = sh (returnStdout: true, script:'aws ec2 describe-vpcs --query "Vpcs[?Tags[?Key==\'Name\']|[?Value==\'cpv-vpc\']].VpcId" --region us-east-2 --output text').trim()
+           vpcid = sh (returnStdout: true, script:"aws ec2 describe-vpcs --query 'Vpcs[?Tags[?Key==\"${env.vpc_name}\"]|[?Value==\"cpv-vpc\"]].VpcId' --region ${env.aws_region} --output text").trim()
            }
-            sh "terraform init"
+            sh 'terraform init -backend-config="region=${env.aws_region}"'
             sh "terraform plan -var 'vpc_id=${vpcid}' -var-file=../parameters/es-cluster-param.tfvars"
             sh "terraform apply -var 'vpc_id=${vpcid}' -var-file=../parameters/es-cluster-param.tfvars -auto-approve"
             sh "terraform output > /var/lib/jenkins/pipeline-output.txt"
