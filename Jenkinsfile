@@ -47,7 +47,7 @@ pipeline {
         steps {
           dir ("terraform-aws"){
            script{
-           vpcid = sh (returnStdout: true, script:"aws ec2 describe-vpcs --query 'Vpcs[?Tags[?Key==\"Name\"]|[?Value==\"${env.vpc_name}\"]].VpcId' --region ${env.aws_region} --output text").trim()
+           vpcid = sh (returnStdout: true, script:'aws ec2 describe-vpcs --query "Vpcs[?Tags[?Key==\'Name\']|[?Value==\'${env.vpc_name}\']].VpcId" --region ${env.aws_region} --output text').trim()
            }
             sh "terraform init -backend-config='region=${env.aws_region}'"
             sh "terraform plan -var 'vpc_id=${vpcid}' -var-file=../parameters/es-cluster-param.tfvars"
