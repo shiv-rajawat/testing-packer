@@ -7,6 +7,10 @@ variable "env"{
   description = "Environment. It can be dev,uat or prod."
 }
 
+variable "aws_region" {
+  type = "string"
+}
+
 variable "vpc_cidr_block"{
   type = "string"
   description = "The CIDR block for the VPC."
