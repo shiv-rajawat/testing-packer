@@ -12,7 +12,7 @@ pipeline {
     stage('Pre ELK Infra setup') {
         steps {
           dir("Pre-ELK"){
-          sh "terraform init || true"
+          sh "terraform init -backend-config="region=us-east-2"
           sh "terraform apply -var-file=../parameters/pre-elk-param.tfvars -auto-approve"
             }
         }
