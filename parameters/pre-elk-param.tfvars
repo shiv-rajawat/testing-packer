@@ -2,6 +2,7 @@
 
 #environment parameters
 env = "elk"
+aws_region = "us-east-2"
 
 #vpc parameters
 vpc_cidr_block = "149.10.0.0/16"
