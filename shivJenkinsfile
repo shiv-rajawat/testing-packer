@@ -3,14 +3,17 @@ import hudson.model.User.FullNameIdResolver
 STAGE = formatStage()
 
 pipeline {
-    environment {
-
-    }
     options {
         disableConcurrentBuilds()
         buildDiscarder(logRotator(numToKeepStr: '10'))
     }
     stages {
+    
+        stage('Checkout') {
+            steps {
+              checkout scm
+            }
+        }
         stage('Build') {
             steps {
                 script {
