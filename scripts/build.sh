@@ -3,7 +3,7 @@ cd $PWD/Pre-ELK
 echo $HOME
 echo $PWD
 ls -l
-terraform init
+terraform init -backend-config='region=us-east-2'
 terraform apply -var-file=../parameters/pre-elk-param.tfvars -auto-approve
 
 cd ../IAM
