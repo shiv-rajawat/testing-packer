@@ -8,7 +8,7 @@ terraform apply -var-file=../parameters/pre-elk-param.tfvars -auto-approve
 
 cd $PWD/IAM
 terraform init -backend-config='region=us-east-2'
-terraform apply -auto-approve
+terraform apply -var-file=../parameters/iam-param.tfvars -auto-approve
 
 cd $PWD/packer
 packer build -only=amazon-ebs -var-file=variables.json elasticsearch6-node.packer.json || true
