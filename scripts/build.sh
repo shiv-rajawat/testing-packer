@@ -15,7 +15,7 @@ packer build -only=amazon-ebs -var-file=variables.json elasticsearch6-node.packe
 packer build -only=amazon-ebs -var-file=variables.json kibana6-node.packer.json || true
 
 cd ../terraform-aws
-vpcid=$(aws ec2 describe-vpcs --query "Vpcs[?Tags[?Key=='Name']|[?Value=='myvpc']].VpcId" --region us-east-2 --output text)
+vpcid=$(aws ec2 describe-vpcs --query "Vpcs[?Tags[?Key=='Name']|[?Value=='cpv-vpc']].VpcId" --region us-east-2 --output text)
 echo ${vpcid}
 len=${#vpcid}
 echo $len
