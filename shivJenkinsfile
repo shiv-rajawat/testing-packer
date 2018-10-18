@@ -49,13 +49,13 @@ def run(command) {
             commands["${name}"] = {
                 stage("${name}") {
 
-                    {
+                    
                         sh(script);
                     }
                 }
             }
         }
-    }
+    
 
 def formatStage(branch = env.BRANCH_NAME){
     return branch.replace("[^A-Za-z0-9]", "").toLowerCase()
