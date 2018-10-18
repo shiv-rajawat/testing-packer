@@ -42,10 +42,20 @@ pipeline {
 }
 
 def run(command) {
-	def commands = [:]
-	for (int i = 0; i<PIPELINE_STEPS.size(); i++){
-	sh "echo ${PIPELINE_STEPS['Build']}"
-	}
+    def commands = [:]
+    // for each defined step, walk through the name and invoke it if it matches the command
+    PIPELINE_STEPS.each{ name, script ->
+        if (name.toLowerCase().contains(command)) {
+            commands["${name}"] = {
+                stage("${name}") {
+
+                    {
+                        sh(script);
+                    }
+                }
+            }
+        }
+    }
 }
 
 def formatStage(branch = env.BRANCH_NAME){
