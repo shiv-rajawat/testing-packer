@@ -7,7 +7,7 @@ terraform init -backend-config='region=us-east-2'
 terraform apply -var-file=../parameters/pre-elk-param.tfvars -auto-approve
 
 cd ../IAM
-terraform init
+terraform init -backend-config='region=us-east-2'
 terraform apply -auto-approve
 
 cd ../packer
@@ -16,7 +16,7 @@ packer build -only=amazon-ebs -var-file=variables.json kibana6-node.packer.json 
 
 cd ../terraform-aws
 vpcid=$(aws ec2 describe-vpcs --query "Vpcs[?Tags[?Key=='Name']|[?Value=='cpv-vpc']].VpcId" --region us-east-2 --output text)
-terraform init
+terraform init -backend-config='region=us-east-2'
 terraform plan -var 'vpc_id=${vpcid}' -var-file=../parameters/es-cluster-param.tfvars
 terraform apply -var 'vpc_id=${vpcid}' -var-file=../parameters/es-cluster-param.tfvars -auto-approve
 terraform output > /var/lib/jenkins/pipeline-output.txt
