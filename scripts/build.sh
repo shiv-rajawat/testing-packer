@@ -1,5 +1,5 @@
 #!/bin/bash
-cd ./testing-packer/Pre-ELK
+cd $PWD/Pre-ELK
 echo $HOME
 echo $PWD
 ls -l
