@@ -20,10 +20,10 @@ echo ${vpcid}
 len=${#vpcid}
 echo $len
 terraform init -backend-config='region=us-east-2'
-terraform plan -var 'vpc_id=${vpcid}' -var-file=../parameters/es-cluster-param.tfvars
-terraform apply -var 'vpc_id=${vpcid}' -var-file=../parameters/es-cluster-param.tfvars -auto-approve
+terraform plan -var 'vpc_id=$vpcid' -var-file=../parameters/es-cluster-param.tfvars
+terraform apply -var 'vpc_id=$vpcid' -var-file=../parameters/es-cluster-param.tfvars -auto-approve
 terraform output > /var/lib/jenkins/pipeline-output.txt
-terraform destroy -var 'vpc_id=${vpcid}' -var-file=../parameters/es-cluster-param.tfvars -auto-approve
+terraform destroy -var 'vpc_id=$vpcid' -var-file=../parameters/es-cluster-param.tfvars -auto-approve
 
 cd ../IAM
 terraform destroy -var-file=../parameters/iam-param.tfvars -auto-approve
