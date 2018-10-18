@@ -1,5 +1,5 @@
 // the stages this pipeline supports
-def PIPELINE_STEPS = [
+PIPELINE_STEPS = [
     'Build': './scripts/build.sh',
     'Validate': './scripts/validate.sh',
     'Deploy': './scripts/deploy.sh'
