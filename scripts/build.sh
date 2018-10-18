@@ -15,7 +15,7 @@ packer build -only=amazon-ebs -var-file=variables.json elasticsearch6-node.packe
 packer build -only=amazon-ebs -var-file=variables.json kibana6-node.packer.json || true
 
 cd ../terraform-aws
-vpcid=aws ec2 describe-vpcs --query "Vpcs[?Tags[?Key=='Name']|[?Value=='cpv-vpc']].VpcId" --region us-east-2 --output text
+vpcid=`aws ec2 describe-vpcs --query "Vpcs[?Tags[?Key=='Name']|[?Value=='cpv-vpc']].VpcId" --region us-east-2 --output text`
 terraform init -backend-config='region=us-east-2'
 terraform plan -var 'vpc_id=${vpcid}' -var-file=../parameters/es-cluster-param.tfvars
 terraform apply -var 'vpc_id=${vpcid}' -var-file=../parameters/es-cluster-param.tfvars -auto-approve
