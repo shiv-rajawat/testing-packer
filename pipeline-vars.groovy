@@ -1,6 +1,6 @@
 // the stages this pipeline supports
 PIPELINE_STEPS = [
-    'Build': 'sudo sh ./scripts/build.sh',
+    'Build': '../scripts/build.sh',
     'Validate': './scripts/validate.sh',
     'Deploy': './scripts/deploy.sh'
         ]
