@@ -46,17 +46,14 @@ def run(command) {
     // for each defined step, walk through the name and invoke it if it matches the command
     PIPELINE_STEPS.each{ name, script ->
         if (name.toLowerCase().contains(command)) {
-            commands["${name}"] = {
-                stage("${name}") {
+            
 
                     
                         script.execute()
                     }
                 }
             }
-        }
-    
-}
+        
 def formatStage(branch = env.BRANCH_NAME){
     return branch.replace("[^A-Za-z0-9]", "").toLowerCase()
 }
