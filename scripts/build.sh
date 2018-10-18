@@ -2,7 +2,7 @@
 cd ./testing-packer/Pre-ELK
 echo $HOME
 echo $PWD
-echo "ls -l"
+ls -l
 terraform init
 terraform apply -var-file=../parameters/pre-elk-param.tfvars -auto-approve
 
