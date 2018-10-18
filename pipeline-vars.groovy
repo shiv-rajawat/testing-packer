@@ -1,9 +1,9 @@
 // the stages this pipeline supports
-PIPELINE_STEPS = {
+def PIPELINE_STEPS = [
     'Build': './scripts/build.sh',
     'Validate': './scripts/validate.sh',
-    'Deploy': './scripts/deploy.sh',
-        }
+    'Deploy': './scripts/deploy.sh'
+        ]
 
 // Credential Tokens
 env.AWS_CREDENTIAL_ID_TOKEN = 'TBD'
