@@ -1,8 +1,8 @@
 #!/bin/bash
 
 cd $PWD/terraform-aws
-vpcid=$(aws ec2 describe-vpcs --query "Vpcs[?Tags[?Key=='Name']|[?Value=='cpv-vpc']].VpcId" --region "${env.AWS_REGION}" --output text)
-terraform init -backend-config='region="${env.AWS_REGION}"'
+vpcid=$(aws ec2 describe-vpcs --query "Vpcs[?Tags[?Key=='Name']|[?Value==$ELK_VPC_NAME]].VpcId" --region "${AWS_REGION}" --output text)
+terraform init -backend-config='region="${AWS_REGION}"'
 #terraform plan -var "vpc_id=$vpcid" -var-file=../parameters/es-cluster-param.tfvars
 terraform apply -var "vpc_id=$vpcid" -var-file=../parameters/es-cluster-param.tfvars -auto-approve
 terraform output > /var/lib/jenkins/pipeline-output.txt
