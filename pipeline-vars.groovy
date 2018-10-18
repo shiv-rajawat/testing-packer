@@ -1,8 +1,8 @@
 // the stages this pipeline supports
 env.PIPELINE_STEPS = [
-    Build: "./scripts/build.sh",
-    Validate: "./scripts/validate.sh",
-    Deploy: "./scripts/deploy.sh",
+    'Build: "./scripts/build.sh"',
+    'Validate: "./scripts/validate.sh"',
+    'Deploy: "./scripts/deploy.sh"',
 ];
 
 // Credential Tokens
