@@ -1,6 +1,6 @@
 #!/bin/bash
 cd ./testing-packer/Pre-ELK
-echo $PWD
+echo $HOME
 terraform init
 terraform apply -var-file=../parameters/pre-elk-param.tfvars -auto-approve
 
