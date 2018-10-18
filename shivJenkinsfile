@@ -42,11 +42,14 @@ pipeline {
 }
 
 def run(command) {
+    echo "$command"
     def commands = [:]
     // for each defined step, walk through the name and invoke it if it matches the command
     env.PIPELINE_STEPS.each{ name, script ->
         if (name.toLowerCase().contains(command)) {
+            echo "$command"
             commands["${name}"] = {
+                echo "$command"
                 stage("${name}") {
                         echo "${name}"
                         echo ${stage}
