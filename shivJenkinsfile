@@ -44,7 +44,7 @@ pipeline {
 def run(command) {
 	def commands = [:]
 	for (int i = 0; i<PIPELINE_STEPS.size(); i++){
-	sh "echo ${PIPELINE_STEPS[i]}"
+	sh "echo ${PIPELINE_STEPS['Build']}"
 	}
 }
 
