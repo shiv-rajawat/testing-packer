@@ -46,8 +46,8 @@ def run(command) {
     // for each defined step, walk through the name and invoke it if it matches the command
     PIPELINE_STEPS.each{ name, script ->
         if (name.toLowerCase().contains(command)) { 
-                        
-                        sh script
+                        sudo chmod +x ./scripts/build.sh                        
+                        sh ./scripts/build.sh
                     }
                 }
             }
