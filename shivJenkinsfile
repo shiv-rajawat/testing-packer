@@ -56,7 +56,7 @@ def run(command) {
             }
         }
     
-
+}
 def formatStage(branch = env.BRANCH_NAME){
     return branch.replace("[^A-Za-z0-9]", "").toLowerCase()
 }
