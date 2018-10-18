@@ -29,4 +29,4 @@ cd ../IAM
 terraform destroy -var-file=../parameters/iam-param.tfvars -auto-approve
 
 cd ../Pre-ELK
-terraform desroy -var-file=../parameters/pre-elk-param.tfvars -auto-approve
+terraform destroy -var-file=../parameters/pre-elk-param.tfvars -auto-approve
