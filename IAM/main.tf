@@ -1,8 +1,8 @@
 terraform {
   backend "s3" {
     encrypt = true
-    bucket = "cwt-terraform-remote-state-bucket"
-    dynamodb_table = "cwt-terraform-state-lock"
+    bucket = "shiv-terraform-remote-state-bucket"
+    dynamodb_table = "shiv-terraform-state-lock"
     key    = "global/s3/iam-terraform.tfstate"
   }
 }
