@@ -1,4 +1,5 @@
 #!/bin/bash
+aws s3 ls
 cd $PWD/Pre-ELK
 terraform init -backend-config="region=${AWS_REGION}"
 terraform apply -var-file=../parameters/pre-elk-param.tfvars -auto-approve
