@@ -33,7 +33,7 @@ PIPELINE_STEPS = [
     'Deploy': 'bash ./scripts/deploy.sh'
         ]
 
-createGlobalEnvironmentVariables('AWS_REGION','us-east-2')
+createGlobalEnvironmentVariables('AWS_REGION','ap-southeast-2')
 createGlobalEnvironmentVariables('ELK_VPC_NAME','cpv-vpc')
 
 
