@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment {
+        AWS_ACCESS_KEY_ID = credentials('neu-aws-secret-key-id')
+        AWS_SECRET_ACCESS_KEY = credentials('neu-aws-secret-access-key')
+    }
     options {
         disableConcurrentBuilds()
         buildDiscarder(logRotator(numToKeepStr: '10'))
