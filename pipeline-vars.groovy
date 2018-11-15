@@ -34,6 +34,6 @@ PIPELINE_STEPS = [
         ]
 
 createGlobalEnvironmentVariables('AWS_REGION','ap-southeast-2')
-createGlobalEnvironmentVariables('ELK_VPC_NAME','cpv-vpc')
+createGlobalEnvironmentVariables('ELK_VPC_NAME','shiv-cpv-vpc')
 
 
