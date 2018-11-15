@@ -4,6 +4,16 @@ variable "es_cluster" {
   default = "cwt-es-cluster"
 }
 
+
+variable "access_key" {
+  type = "string"
+  }
+
+variable "secret_key" {
+  type = "string"
+  }
+
+
 variable "aws_region" {
   type = "string"
   default = "us-east-2"

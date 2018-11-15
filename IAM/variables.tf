@@ -12,3 +12,11 @@ variable "iam_instance_profile_name"{
   type = "string"
   description = "The name for the iam instance profile."
 }
+
+variable "access_key" {
+  type = "string"
+  }
+
+variable "secret_key" {
+  type = "string"
+  }
