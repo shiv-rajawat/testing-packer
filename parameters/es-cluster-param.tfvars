@@ -1,4 +1,4 @@
-es_cluster = "cwt-elk-cluster"
+es_cluster = "shiv-elk-cluster"
 aws_region = "us-east-2"
 availability_zones = []
 key_name = "elasticsearch"
@@ -17,7 +17,7 @@ datas_count = "2"
 clients_count = "1"
 security_enabled = "false"
 monitoring_enabled = "true"
-client_user = "exampleuser"
+client_user = "shiv-exampleuser"
 public_facing = "true"
 additional_security_groups = []
 ebs_optimized = "true"
