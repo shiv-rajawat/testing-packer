@@ -1,4 +1,4 @@
-sh "aws s3 ls"
+
 data "aws_availability_zones" "available" {}
 
 locals {
