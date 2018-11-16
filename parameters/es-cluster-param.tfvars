@@ -1,5 +1,5 @@
 es_cluster = "shiv-elk-cluster"
-aws_region = "us-east-2"
+aws_region = "ap-southeast-2"
 availability_zones = []
 key_name = "elasticsearch"
 environment = "default"
